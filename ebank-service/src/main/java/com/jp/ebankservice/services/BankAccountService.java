@@ -1,5 +1,6 @@
 package com.jp.ebankservice.services;
 
+import com.jp.ebankservice.dto.*;
 import com.jp.ebankservice.entities.*;
 import com.jp.ebankservice.repositories.*;
 import jakarta.transaction.*;
@@ -17,27 +18,37 @@ public class BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
-    public List<BankAccount> getAllBankAccounts() {
-        return bankAccountRepository.findAll();
+    public List<BankAccountResponseDto> getAllBankAccounts() {
+          return mappers.fromBankAccounts(bankAccountRepository.findAll());
     }
 
-    public BankAccount getBankAccountById(String id) {
-        return bankAccountRepository.findById(id).orElseThrow(()-> new RuntimeException("Bank account not found"));
+    public BankAccountResponseDto getBankAccountById(String id) {
+        BankAccount bankAccount = bankAccountRepository.findById(id).orElseThrow(()-> new RuntimeException("Bank account not found"));
+        return mappers.fromBankAccount(bankAccount);
     }
 
-    public List<BankAccount> getBankAccountByCustomerId(Long customerId) {
-        return bankAccountRepository.findByCustomerId(customerId);
+    public List<BankAccountResponseDto> getBankAccountByCustomerId(Long customerId) {
+        return mappers.fromBankAccounts(bankAccountRepository.findByCustomerId(customerId));
     }
 
     @Transactional
-    public BankAccount saveBankAccount(BankAccount bankAccount) {
-        bankAccount.setType( Math.random() > 0.5 ? AccountType.CURRENT_ACCOUNT : AccountType.SAVING_ACCOUNT);
-        bankAccount.setCreatedAt(LocalDateTime.now());
-        return bankAccountRepository.save(bankAccount);
+    public BankAccountResponseDto saveBankAccount(BankAccountRequestDto bankAccountRequestDto) {
+
+        BankAccount bankAccount =  bankAccountRepository.save(BankAccount.builder()
+                        .type(Math.random() > 0.5 ? AccountType.CURRENT_ACCOUNT : AccountType.SAVING_ACCOUNT)
+                        .balance(bankAccountRequestDto.getBalance())
+                        .createdAt(LocalDateTime.now())
+                        .customerId(bankAccountRequestDto.getCustomerId())
+                .build());
+        return mappers.fromBankAccount(bankAccount);
+
     }
     @Transactional
-    public BankAccount updateBankAccount(BankAccount bankAccount) {
-        return bankAccountRepository.save(bankAccount);
+    public BankAccountResponseDto updateBankAccount(BankAccountRequestDto bankAccountRequestDto) {
+        BankAccount bankAccount =  bankAccountRepository.save(BankAccount.builder()
+                .balance(bankAccountRequestDto.getBalance())
+                .build());
+        return mappers.fromBankAccount(bankAccount);
     }
     @Transactional
     public void deleteBankAccountById(String id) {

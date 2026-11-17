@@ -1,5 +1,6 @@
 package com.jp.ebankservice.web;
 
+import com.jp.ebankservice.dto.*;
 import com.jp.ebankservice.entities.*;
 import com.jp.ebankservice.services.*;
 import jakarta.transaction.*;
@@ -15,46 +16,33 @@ public class BankAccountRestController {
     public BankAccountRestController(BankAccountService bankAccountService) {
         this.bankAccountService = bankAccountService;
     }
-
-
-
     @GetMapping("/accounts")
-    public List<BankAccount> getAllBankAccounts() {
+    public List<BankAccountResponseDto> getAllBankAccounts() {
         return bankAccountService.getAllBankAccounts();
     }
 
     @GetMapping("/accounts/{id}")
-    public BankAccount getBankAccountById(@PathVariable String id) {
+    public BankAccountResponseDto getBankAccountById(@PathVariable String id) {
         return bankAccountService.getBankAccountById(id);
     }
-@GetMapping("/accounts/customers/{id}")
-    public List<BankAccount> getBankAccountByCustomerId(@PathVariable ("id") Long customerId) {
+    @GetMapping("/accounts/customers/{id}")
+    public List<BankAccountResponseDto> getBankAccountByCustomerId(@PathVariable ("id") Long customerId) {
         return bankAccountService.getBankAccountByCustomerId(customerId);
     }
-
     @Transactional
     @PostMapping("/accounts")
-    public BankAccount saveBankAccount(@RequestBody BankAccount bankAccount) {
-        return bankAccountService.saveBankAccount(bankAccount);
+    public BankAccountResponseDto saveBankAccount(@RequestBody BankAccountRequestDto bankAccountRequestDto) {
+        return bankAccountService.saveBankAccount(bankAccountRequestDto);
     }
 
     @Transactional
     @PutMapping("/accounts/{id}")
-    public BankAccount updateBankAccount(@RequestBody  BankAccount bankAccount, @PathVariable String id) {
-        BankAccount bankAccountToUpdate = bankAccountService.getBankAccountById(id);
-        bankAccountToUpdate.setBalance(bankAccount.getBalance());
-        bankAccountToUpdate.setType(bankAccount.getType());
-        bankAccountToUpdate.setCustomer(bankAccount.getCustomer());
-        bankAccountToUpdate.setCustomerId(bankAccount.getCustomerId());
-        return bankAccountService.updateBankAccount(bankAccountToUpdate);
+    public BankAccountResponseDto updateBankAccount(@RequestBody  BankAccountRequestDto bankAccountRequestDto, @PathVariable String id) {
+        return bankAccountService.updateBankAccount(bankAccountRequestDto);
     }
-
     @Transactional
     @DeleteMapping("/accounts/{id}")
     public void deleteBankAccountById(@PathVariable String id) {
         bankAccountService.deleteBankAccountById(id);
     }
-
-
-
 }
