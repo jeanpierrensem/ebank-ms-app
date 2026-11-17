@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="customer-service" />
         <module name="gateway-service" />
+        <module name="discovery-service" />
       </profile>
       <profile name="Annotation profile for ebank-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" />
         </processorPath>
         <module name="ebank-service" />
@@ -24,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="customer-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
       <module name="ebank-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
     </option>

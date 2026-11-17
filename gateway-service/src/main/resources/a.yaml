@@ -5,10 +5,10 @@ spring:
         webflux:
           routes:
             - id: r1
-              uri: http://localhost:8081
+              uri: LB://CUSTOMER-SERVICE
               predicates:
                 - Path=/customers/**
             - id: r2
-              uri: http://localhost:8082
+              uri: http://EBANK-SERVICE
               predicates:
                 - Path=/accounts/**
