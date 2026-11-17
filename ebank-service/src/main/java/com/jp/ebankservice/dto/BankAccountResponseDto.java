@@ -1,5 +1,6 @@
 package com.jp.ebankservice.dto;
 import com.jp.ebankservice.entities.*;
+import com.jp.ebankservice.model.*;
 import lombok.*;
 
 import java.time.*;
@@ -11,4 +12,5 @@ public class BankAccountResponseDto {
     private  double balance;
     private   AccountType type;
     private   Long customerId;
+    private Customer customer;
 }

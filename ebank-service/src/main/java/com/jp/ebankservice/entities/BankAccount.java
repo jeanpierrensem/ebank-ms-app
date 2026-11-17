@@ -1,6 +1,7 @@
 package com.jp.ebankservice.entities;
 
 
+import com.jp.ebankservice.model.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +21,4 @@ public class BankAccount {
     @Transient
     private Customer customer;
 }
-record Customer (Long id, String firstName, String lastName) { }
+

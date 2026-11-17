@@ -17,6 +17,7 @@ public class mappers {
                            .createdAt(bankAccount.getCreatedAt())
                            .balance(bankAccount.getBalance())
                            .customerId(bankAccount.getCustomerId())
+                           .customer(bankAccount.getCustomer())
                            .id(bankAccount.getId())
                    .build());
        });
@@ -29,6 +30,7 @@ public class mappers {
                .balance(bankAccount.getBalance())
                .customerId(bankAccount.getCustomerId())
                .id(bankAccount.getId())
+               .customer(bankAccount.getCustomer())
                .build();
     }
 

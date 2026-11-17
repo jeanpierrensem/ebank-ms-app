@@ -6,12 +6,14 @@ import com.jp.ebankservice.repositories.*;
 import com.jp.ebankservice.services.*;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.*;
 import org.springframework.context.annotation.*;
 
 import java.time.*;
 import java.util.*;
 
 @SpringBootApplication
+@EnableFeignClients
 public class EbankServiceApplication {
 
     public static void main(String[] args) {
