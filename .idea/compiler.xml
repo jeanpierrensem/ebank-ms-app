@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="customer-service" />
+        <module name="ebank-chatBot" />
         <module name="gateway-service" />
         <module name="discovery-service" />
       </profile>
@@ -21,13 +22,23 @@
         <module name="ebank-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ebank-mcp-client" target="21" />
+      <module name="ebank-ms-app" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="customer-service" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
+      <module name="ebank-chatBot" options="-parameters" />
+      <module name="ebank-mcp-client" options="-parameters" />
       <module name="ebank-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
     </option>
+  </component>
+  <component name="TypeScriptCompiler">
+    <option name="nodeInterpreterTextField" value="node" />
+    <option name="useServicePoweredTypesDisabledManually" value="true" />
   </component>
 </project>

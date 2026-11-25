@@ -19,11 +19,11 @@ public class CustomerServiceApplication {
     @Bean
     CommandLineRunner init(CustomerService customerService) {
         return args -> {
-            List.of("Yassine", "Atma", "Nsem", "Assen").forEach(name -> {
+            List.of("Yassine", "Guy", "paulin", "thiery",   "Atma", "Nsem", "Assen", "Belavi", "pidinsem", "Guantanomo", "stephane", "fabien", "Ernest", "Paul", "Alain ").forEach(name -> {
 
                 customerService.saveCustomer(Customer.builder()
                                 .name(name)
-                                .email(new StringBuffer(name).append("@gmail.com").toString())
+                                .email(name.concat("@gmail.com"))
                         .build());
 
 

@@ -4,7 +4,6 @@ import com.jp.customerservice.entities.*;
 import com.jp.customerservice.services.*;
 import org.springframework.transaction.annotation.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 @RestController

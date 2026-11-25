@@ -36,8 +36,8 @@ public class BankAccountRestController {
     }
 
     @Transactional
-    @PutMapping("/accounts/{id}")
-    public BankAccountResponseDto updateBankAccount(@RequestBody  BankAccountRequestDto bankAccountRequestDto, @PathVariable String id) {
+    @PutMapping("/accounts")
+    public BankAccountResponseDto updateBankAccount(@RequestBody  BankAccountRequestDto bankAccountRequestDto) {
         return bankAccountService.updateBankAccount(bankAccountRequestDto);
     }
     @Transactional

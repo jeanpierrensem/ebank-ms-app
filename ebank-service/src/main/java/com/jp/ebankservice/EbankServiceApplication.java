@@ -24,7 +24,7 @@ public class EbankServiceApplication {
     CommandLineRunner init(BankAccountService bankAccountService) {
         return args -> {
 
-            for (int i = 1; i <= 3; i++) {
+            for (int i = 1; i <= 15; i++) {
                 for (int j = 1; j <= 5; j++) {
                     bankAccountService.saveBankAccount(BankAccountRequestDto.builder()
                             .balance(500+Math.random()*50000)
